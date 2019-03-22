@@ -7,6 +7,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { withStyles } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
+import * as actions from "../store/actions";
+import { connect } from "react-redux";
 
 const cardStyles = theme => ({
     root: {
@@ -25,12 +27,16 @@ const styles = {
 };
 
 class Drone extends React.Component{
-    state = {
+  /*  state = {
         counter: 0,
         drones: []
     }
-
+*/
     componentDidMount(){
+        //console.log("THE PROPS", this.props)
+        this.props.onLoad();
+
+        /*
         fetch('https://react-assessment-api.herokuapp.com/api/drone')
         .then(response=>response.json())
         .then(droneData =>{
@@ -39,6 +45,7 @@ class Drone extends React.Component{
                 drones: droneData.data
             });
         })
+        */
     }
 
     dateFormat = utc => {
@@ -66,30 +73,58 @@ class Drone extends React.Component{
     }
 
     render(){
-        const { classes } = this.props;
-        const { drones, counter } = this.state;
+        const { classes, onNextDrone, onPrevDrone, drones, counter } = this.props;
+        //const { drones, counter } = this.state;
+        //console.log("RENDER PROPS", this.props)
 
         return(
-            <Card className={classes.card}>
+            <Card >
             <CardHeader title={"#" + (counter + 1) + " Drone Data"} />
             <CardContent>
               <List>
                 {drones[counter] && Object.keys(drones[counter]).map((key) => 
                     <ListItem key={counter + "-" + key}> 
                         <ListItemText 
-                            primary={key == "timestamp" 
+                            primary={key === "timestamp" 
                                 ? this.dateFormat(drones[counter][key]) 
                                 : drones[counter][key]} 
                             secondary={key} />
                     </ListItem>
                     )}
               </List>
-                <Button onClick={this.prevDrone} variant="contained" >Prev</Button>
-                <Button onClick={this.nextDrone} variant="contained" >Next</Button>
+                <Button onClick={onPrevDrone} variant="contained" >Prev</Button>
+                <Button onClick={onNextDrone} variant="contained" >Next</Button>
             </CardContent>
           </Card>
         )
     }
 }
 
-export default withStyles(styles)(Drone);
+const mapDispatch = dispatch => ({
+    onLoad: () =>
+        dispatch({
+            type: actions.FETCH_DRONES
+        }),
+    onNextDrone: () =>
+        dispatch({
+            type: actions.NEXT_DRONE
+        }),
+    onPrevDrone: () =>
+        dispatch({
+            type: actions.PREV_DRONE
+        })
+});
+
+const mapState = (state, ownProps) => {
+    const {
+        drone
+    } = state;
+    return {
+        ...drone
+    };
+  };
+  
+export default connect(
+    mapState,
+    mapDispatch
+)(Drone);
