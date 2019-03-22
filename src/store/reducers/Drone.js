@@ -2,7 +2,7 @@ import * as actions from "../actions";
 
 const initialState = {
     counter: 0,
-    drones: [1,2,3],
+    drones: [],
     lastUpdate: new Date().getTime()
 }
 //state = initialState
