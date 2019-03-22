@@ -1,14 +1,15 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
-import CardHeaderRaw from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { withStyles } from "@material-ui/core/styles";
 
 const DroneList = props => {
-    const { drone } = props;
+    const { drone, timeSince } = props;
+
+    if(drone && typeof drone == "object"){
+        drone.timestamp = dateFormat(drone.timestamp);
+        drone["Last received"] = (timeSince / 1000).toFixed(2) + " seconds ago";
+    }
 
     return (
         <List>
@@ -25,8 +26,14 @@ const DroneList = props => {
     );
 }
 
-const dateFormat = utc => {
-    return new Date(utc).toString()
+const dateFormat = time => {
+    return new Date(time).toString()
+}
+
+const lastUpdated = time => {
+    const now = new Date().getSeconds()
+    time = new Date(time).getSeconds()
+    return `Last updated ${now - time} seconds ago.`
 }
 
 export default DroneList;

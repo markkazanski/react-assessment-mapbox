@@ -2,9 +2,6 @@ import React from "react";
 import Card from "@material-ui/core/Card";
 import CardHeaderRaw from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import { withStyles } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 import * as actions from "../store/actions";
@@ -34,13 +31,12 @@ class Drone extends React.Component{
     }
 
     render(){
-        const { classes, onNextDrone, onPrevDrone, drones, counter } = this.props;
-
+        const { onNextDrone, onPrevDrone, drones, counter, timeSince } = this.props;
         return(
             <Card >
             <CardHeader title={"#" + (counter + 1) + " Drone Data"} />
             <CardContent>
-                <DroneList drone={drones[counter]} />
+                <DroneList drone={drones[counter]} timeSince={timeSince} />
                 <Button onClick={onPrevDrone} variant="contained" >Prev</Button>
                 <Button onClick={onNextDrone} variant="contained" >Next</Button>
             </CardContent>

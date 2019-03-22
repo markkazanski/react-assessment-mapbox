@@ -2,7 +2,8 @@ import * as actions from "../actions";
 
 const initialState = {
     counter: 0,
-    drones: [1,2,3]
+    drones: [1,2,3],
+    lastUpdate: new Date().getTime()
 }
 //state = initialState
 export default (state = initialState, action) => {
@@ -20,7 +21,12 @@ export default (state = initialState, action) => {
                     return state
         
         case actions.DRONE_DATA_RECIEVED:
-            return {...state, drones: action.drones}
+            return {
+                ...state, 
+                drones: action.drones,
+                timeSince: new Date().getTime() - state.lastUpdate,
+                lastUpdate: new Date().getTime()
+            }
         default:
             return state;
     }
