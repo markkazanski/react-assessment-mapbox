@@ -9,6 +9,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 import * as actions from "../store/actions";
 import { connect } from "react-redux";
+import DroneList from "./DroneList";
 
 const cardStyles = theme => ({
     root: {
@@ -27,71 +28,19 @@ const styles = {
 };
 
 class Drone extends React.Component{
-  /*  state = {
-        counter: 0,
-        drones: []
-    }
-*/
+
     componentDidMount(){
-        //console.log("THE PROPS", this.props)
         this.props.onLoad();
-
-        /*
-        fetch('https://react-assessment-api.herokuapp.com/api/drone')
-        .then(response=>response.json())
-        .then(droneData =>{
-            const { counter } = this.state;
-            this.setState({
-                drones: droneData.data
-            });
-        })
-        */
-    }
-
-    dateFormat = utc => {
-        return new Date(utc).toString()
-    }
-
-    nextDrone = e => {
-        e.preventDefault();
-        //check if not at the end of drones array
-        this.setState((prevState, props) => ({
-            counter: (prevState.counter < prevState.drones.length) 
-                    ? prevState.counter + 1 
-                    : prevState.counter
-        }));
-    }
-
-    prevDrone = e => {
-        e.preventDefault();
-        //check if not at the end of drones array
-        this.setState((prevState, props) => ({
-            counter: (prevState.counter > 0) 
-                    ? prevState.counter - 1 
-                    : prevState.counter
-        }));
     }
 
     render(){
         const { classes, onNextDrone, onPrevDrone, drones, counter } = this.props;
-        //const { drones, counter } = this.state;
-        //console.log("RENDER PROPS", this.props)
 
         return(
             <Card >
             <CardHeader title={"#" + (counter + 1) + " Drone Data"} />
             <CardContent>
-              <List>
-                {drones[counter] && Object.keys(drones[counter]).map((key) => 
-                    <ListItem key={counter + "-" + key}> 
-                        <ListItemText 
-                            primary={key === "timestamp" 
-                                ? this.dateFormat(drones[counter][key]) 
-                                : drones[counter][key]} 
-                            secondary={key} />
-                    </ListItem>
-                    )}
-              </List>
+                <DroneList drone={drones[counter]} />
                 <Button onClick={onPrevDrone} variant="contained" >Prev</Button>
                 <Button onClick={onNextDrone} variant="contained" >Next</Button>
             </CardContent>
