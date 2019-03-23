@@ -38,3 +38,5 @@ This uses the Mapbox GL package to display all drones. The map updates as the AP
   b. adding options to filter data: minimum and maximum temperature or accuracy. 
   
 5. Storing data over a period of time and showing changes in temperature over time.
+
+6. Removing the hardcoded API key for Mapbox GL. The key should be moved to an environmental variable. 
