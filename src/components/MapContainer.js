@@ -21,21 +21,19 @@ const cardStyles = theme => ({
   });
 const CardHeader = withStyles(cardStyles)(CardHeaderRaw);
 
-
-
 class MapContainer extends React.Component{
-
     state = {
         viewport: {
           width: 800,
           height: 500,
           latitude: 29.7604,
           longitude: -95.3698,
-          zoom: 4
+          zoom: 5
         }
       };
 
     render(){
+        
         const { drones } = this.props;
         //drones.forEach(d => console.log(d.latitude, d.longitude))
 
@@ -73,9 +71,8 @@ class MapContainer extends React.Component{
           });
 
         //console.log(features)
-
         return(
-            <Card >
+            <Card   >
             <CardHeader title={"Drone Map"} />
             <CardContent>
             <ReactMapGL

@@ -29,22 +29,22 @@ const theme = createMuiTheme({
   }
 });
 
-
-
 const App = props => (
   <MuiThemeProvider theme={theme}>
     <CssBaseline />
     <Provider store={store}>
       <Wrapper>
         <Header />
-        <Grid container spacing={24} style={{marginTop: 10}}>
-          <Grid item xs={4}>
-            <Drone />
-          </Grid>
-          <Grid item xs={8}>
-            <MapContainer />
-          </Grid>
+        <Grid container spacing={24} className="mdc-layout-grid" style={{padding: 20}}>
+
+            <Grid item className="mdc-layout-grid__cell--span-3" >
+              <Drone />
+            </Grid>
+            <Grid item className="mdc-layout-grid__cell--span-9" >
+              <MapContainer />
+            </Grid>
         </Grid>
+
         <ToastContainer />
       </Wrapper>
     </Provider>

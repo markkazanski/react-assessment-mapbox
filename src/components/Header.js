@@ -8,6 +8,9 @@ import Weather from "./Weather";
 const styles = {
   grow: {
     flexGrow: 1
+  },
+  margin: {
+    marginBottom: 20
   }
 };
 
@@ -16,7 +19,7 @@ const Header = props => {
 
   const name = "Mark Kazanski's";
   return (
-    <AppBar position="static">
+    <AppBar position="static" className={classes.margin}>
       <Toolbar>
         <Typography variant="h6" color="inherit" className={classes.grow}>
           {name} EOG React Visualization Assessment
