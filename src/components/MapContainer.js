@@ -27,8 +27,8 @@ class MapContainer extends React.Component{
 
     state = {
         viewport: {
-          width: 400,
-          height: 400,
+          width: 800,
+          height: 500,
           latitude: 29.7604,
           longitude: -95.3698,
           zoom: 4

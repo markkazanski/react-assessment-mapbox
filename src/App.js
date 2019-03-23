@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
 import Drone from "./components/Drone";
 import MapContainer from "./components/MapContainer";
+import Grid from '@material-ui/core/Grid';
 
 const store = createStore();
 const theme = createMuiTheme({
@@ -28,14 +29,22 @@ const theme = createMuiTheme({
   }
 });
 
+
+
 const App = props => (
   <MuiThemeProvider theme={theme}>
     <CssBaseline />
     <Provider store={store}>
       <Wrapper>
         <Header />
-        <Drone />
-        <MapContainer />
+        <Grid container spacing={24} style={{marginTop: 10}}>
+          <Grid item xs={4}>
+            <Drone />
+          </Grid>
+          <Grid item xs={8}>
+            <MapContainer />
+          </Grid>
+        </Grid>
         <ToastContainer />
       </Wrapper>
     </Provider>

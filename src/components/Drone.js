@@ -28,11 +28,11 @@ class Drone extends React.Component{
         const { onNextDrone, onPrevDrone, drones, counter, timeSince } = this.props;
         return(
             <Card >
-            <CardHeader title={"#" + (counter + 1) + " Drone Data"} />
+            <CardHeader title={"Drone Data #" + (counter + 1) + " of " + drones.length } />
             <CardContent>
-                <DroneList drone={drones[counter]} timeSince={timeSince} />
                 <Button onClick={onPrevDrone} variant="contained" >Prev</Button>
                 <Button onClick={onNextDrone} variant="contained" >Next</Button>
+                <DroneList drone={drones[counter]} timeSince={timeSince} />
             </CardContent>
           </Card>
         )
