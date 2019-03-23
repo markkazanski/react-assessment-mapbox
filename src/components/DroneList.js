@@ -16,9 +16,7 @@ const DroneList = props => {
             {drone && Object.keys(drone).map((key) => 
                 <ListItem key={drone.timestamp + "-" + key}> 
                     <ListItemText 
-                        primary={key === "timestamp" 
-                            ? dateFormat(drone[key]) 
-                            : drone[key]} 
+                        primary={drone[key]} 
                         secondary={key} />
                 </ListItem>
                 )}
@@ -28,12 +26,6 @@ const DroneList = props => {
 
 const dateFormat = time => {
     return new Date(time).toString()
-}
-
-const lastUpdated = time => {
-    const now = new Date().getSeconds()
-    time = new Date(time).getSeconds()
-    return `Last updated ${now - time} seconds ago.`
 }
 
 export default DroneList;

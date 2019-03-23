@@ -18,12 +18,6 @@ const cardStyles = theme => ({
   });
 const CardHeader = withStyles(cardStyles)(CardHeaderRaw);
 
-const styles = {
-    card: {
-        margin: "5% 25%"
-    }
-};
-
 class Drone extends React.Component{
 
     componentDidMount(){
