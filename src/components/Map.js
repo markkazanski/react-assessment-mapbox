@@ -4,7 +4,11 @@ import MapGL from 'react-map-gl';
 import {fromJS} from 'immutable';
 import ControlPanel from './ControlPanel';
 
-const MAPBOX_TOKEN = 'pk.eyJ1IjoibWFya2themFuc2tpIiwiYSI6ImNqdGtlaXZ6YzNhOGozeW9iYzBudDJpNjMifQ.dbS6ALsDjDKc9msTs1wUiA'
+let MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
+
+//Uncomment LINE 11 if Mapbox GL API KEY is not available. 
+//I would not normally expose an API key, but this is for demonstration purposes and the API KEY is not attached to any billing data. 
+//MAPBOX_TOKEN = 'pk.eyJ1IjoibWFya2themFuc2tpIiwiYSI6ImNqdGtlaXZ6YzNhOGozeW9iYzBudDJpNjMifQ.dbS6ALsDjDKc9msTs1wUiA'
 
 class Map extends React.Component {
     state = {
