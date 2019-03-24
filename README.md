@@ -12,8 +12,8 @@ Deployed on the Google Cloud App Engine: [https://kazanski-eog-react-assessment.
         src/components/Map.js
       ) uncomment **Line 11**
       
-4. Run command ```yarn install```. 
-5. Run command ```yarn start```
+4. Run command ```npm install```. 
+5. Run command ```npm start```
 6. Open URL in a browser: http://localhost:3000/
 
 ### Description
