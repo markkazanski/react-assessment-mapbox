@@ -22,13 +22,15 @@ class MapContainer extends React.Component{
 
     render(){
         //console.log(features)
-        const { drones } = this.props;
+        const { drones, minTemp, maxTemp } = this.props;
 
         return(
             <Card   >
             <CardHeader title={"Drone Map"} />
             <CardContent>
-                <Map drones={drones}  />
+                <Map drones={drones} 
+                    minTemp={minTemp} maxTemp={maxTemp}  
+                    droneMin={getMinTemp(drones)} droneMax={getMaxTemp(drones)} />
             {/*<ControlPanel />*/}
             </CardContent>
           </Card>
@@ -38,10 +40,12 @@ class MapContainer extends React.Component{
 
 const mapState = (state, ownProps) => {
     const {
-        drone
+        drone,
+        map
     } = state;
     return {
-        ...drone
+        ...drone,
+        ...map
     };
   };
   
@@ -49,22 +53,12 @@ export default connect(
     mapState
 )(MapContainer);
 
-/*
-                {
-                    visibility: "none",
-                    id: 'my-layer-heatmap',
-                    type: 'heatmap',
-                    source: 'points',
-                    paint: {
-                        'heatmap-radius': 10,
-                        'heatmap-intensity': .5,
-                        "heatmap-weight": [
-                            "interpolate",
-                            ["linear"],
-                            ["get", "metric"],
-                            0, 0,
-                            6, 1
-                            ]
-                    }
-                }
-            */
+const getTemps = drones => {
+    return drones.map(d => d['metric']);
+  }
+const getMinTemp = (drones) => {
+    return Math.min(...getTemps(drones));
+}
+const getMaxTemp = (drones) => {
+    return Math.max(...getTemps(drones));
+}
