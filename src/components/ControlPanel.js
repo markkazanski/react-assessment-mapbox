@@ -1,39 +1,55 @@
 import React from 'react';
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
+import Slider from '@material-ui/lab/Slider';
+import FormLabel from '@material-ui/core/FormLabel';
+
 
 class ControlPanel extends React.Component {
   render() {
-
     const { onMinTempChange, onMaxTempChange, minTemp, maxTemp, droneMin, droneMax } = this.props;
-
+    const styles = {
+      Sliders: {paddingTop:20, paddingBottom: 20}
+    }
+    //console.log(droneMax, droneMin, minTemp, maxTemp)
     return (
       <div>
-       Control Panel
-       Min temp: 
-       <input type="number" 
-        value={minTemp < droneMin ? droneMin.toFixed(0) : minTemp} 
-        onChange={onMinTempChange} /><br />
-       Max temp: 
-       <input 
-        type="number" 
-        value={maxTemp > droneMax ? droneMax.toFixed(0) : maxTemp} 
-        onChange={onMaxTempChange} />
+        <div style={{margin:20}}>
+         <FormLabel>Min Temp: {minTemp} °F </FormLabel>
+         <Slider
+          style={styles.Sliders}
+          min={droneMin - 1}
+          max={droneMax}
+          value={minTemp}
+          step={1}
+          onChange={(e, val) => onMinTempChange(val)}  />
+        </div>
+       
+        <div style={{margin:20}}>
+          <FormLabel>Max Temp: {maxTemp} °F</FormLabel>
+          <Slider
+            style={styles.Sliders}
+            min={droneMin}
+            max={droneMax + 1}
+            value={maxTemp}
+            step={1}
+            onChange={(e, val) => onMaxTempChange(val)}  />
+        </div>
       </div>
     );
   }
 }
  
 const mapDispatch = dispatch => ({
-  onMinTempChange: (e) =>
+  onMinTempChange: (val) =>
       dispatch({
           type: actions.MIN_TEMP_CHANGE,
-          minTemp: e.target.value
+          minTemp: val//e.target.value
       }),
-    onMaxTempChange: (e) =>
+    onMaxTempChange: (val) =>
       dispatch({
           type: actions.MAX_TEMP_CHANGE,
-          maxTemp: e.target.value
+          maxTemp: val//e.target.value
       })
 });
 

@@ -8,7 +8,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type) {
         case actions.MIN_TEMP_CHANGE:
-            if(action.minTemp < state.maxTemp) //check that less than max           
+            if(action.minTemp < state.maxTemp) //Min temp must stay less than max temp           
                 return {...state, minTemp: action.minTemp};
             else    
                 return {...state, minTemp: state.maxTemp - 1};
