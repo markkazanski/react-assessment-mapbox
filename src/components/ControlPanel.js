@@ -15,7 +15,7 @@ class ControlPanel extends React.Component {
     return (
       <div>
         <div style={{margin:20}}>
-         <FormLabel>Min Temp: {minTemp} °F </FormLabel>
+         <FormLabel>Min Temp: {minTemp}</FormLabel>
          <Slider
           style={styles.Sliders}
           min={droneMin - 1}
@@ -26,7 +26,7 @@ class ControlPanel extends React.Component {
         </div>
        
         <div style={{margin:20}}>
-          <FormLabel>Max Temp: {maxTemp} °F</FormLabel>
+          <FormLabel>Max Temp: {maxTemp}</FormLabel>
           <Slider
             style={styles.Sliders}
             min={droneMin}
