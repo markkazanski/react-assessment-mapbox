@@ -1,5 +1,7 @@
 ## Create React App Visualization
 
+Deployed on the Google Cloud App Engine: [https://kazanski-eog-react-assessment.appspot.com](https://kazanski-eog-react-assessment.appspot.com/)
+
 ### Installation
 
 1. Git clone this repo: https://github.com/markkazanski/mark-kazanski-eog-react-assessment/
