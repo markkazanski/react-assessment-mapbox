@@ -1,11 +1,11 @@
 ## Create React App Visualization
 
-Deployed on the Google Cloud App Engine: [https://kazanski-eog-react-assessment.appspot.com](https://kazanski-eog-react-assessment.appspot.com/)
+No longer deployed
 
 ### Installation
 
-1. Git clone this repo: https://github.com/markkazanski/mark-kazanski-eog-react-assessment/
-2. ```cd mark-kazanski-eog-react-assessment```
+1. Git clone this repo: https://github.com/markkazanski/react-assessment-mapbox
+2. ```cd react-assessment-mapbox```
 3. Mapbox GL API KEY Required, 2 options:
    * In root directory create file ```.env.local``` with content ```REACT_APP_MAPBOX_TOKEN=<Mapbox GL API KEY>```
    * If API KEY is not available: in the file [src/components/Map.js](
